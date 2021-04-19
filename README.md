@@ -79,6 +79,9 @@ All files are included in this git-repository to get CoopCommand up and running.
 
 Once you have the boards in hand and assembled, see the programming notes file for instructions on how to load the code. ATTENTION: This guide assumes the ATMEGA328P has a bootloader already installed, if working with new, "bare" chips you will need to burn a bootloader before installing the sketch. 
 
+For the ESP32-CAM "CoopCam" aspect, this guide from Random Nerd Tutorials outlines the steps for setting up a gmail account with the proper settings. https://randomnerdtutorials.com/esp32-cam-send-photos-email/ 
+These settings, along with your wifi info and BLYNK authentication token will need to be put into the sketch for the camera. 
+
 # CURRENT KNOWN ISSUES:
 
 -PCB for ESP32-CAM is "Backwards". All components must be soldered to backside of PCB as opposed to topside with the exception of the 5-pin JST which can be put on the proper side. Enclosure has been designed with this mistake in mind.
