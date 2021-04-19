@@ -18,7 +18,7 @@ CoopCommand aims to reduce the daily labour of looking after chickens, improve t
 
 #FEATURES:
 
-COOP COMMAND MAIN BOARD:
+#COOP COMMAND MAIN BOARD:
 
 -Pluggable Terminal Block connectors for all user-installed inputs/outputs.
 
@@ -52,7 +52,8 @@ COOP COMMAND MAIN BOARD:
 
 -ATMEGA328P in DIP configuration, easily programmed through Arduino IDE.
 
-ESP32 COOPCAM:
+
+#ESP32 COOPCAM:
 
 -ESP32-CAM AI-THINKER based.
 
@@ -64,7 +65,8 @@ ESP32 COOPCAM:
 
 -Serial connection to main board.
 
-BLYNK:
+#BLYNK:
+
 -Override door open or closed.
 
 -Take a picture with the CoopCam and email it.
