@@ -36,6 +36,8 @@ USB-TTL FTDI: https://www.amazon.ca/DSD-TECH-SH-U09C3-Isolated-Featuring/dp/B07T
 
 -Open CoopCamTest2_BlynkEmail in Arduino IDE
 
+-Edit required sections for your network (wifi,BLYNK and email settings).
+
 -Select proper board (AI-THINKER ESP32-CAM).
 
 -Disconnect CoopCam from CoopCommand main board.
