@@ -73,6 +73,12 @@ CoopCommand aims to reduce the daily labour of looking after chickens, improve t
 
 -Monitor door status (Open, Closed, Opening/Closing).
 
+# Getting Started:
+
+All files are included in this git-repository to get CoopCommand up and running. To get started, use the Gerber files and BOM to get the PCB's coming. The pic n place files can be used if your board house supports assembly. These boards were designed to use JLCPCB's assembly service with as many "basic" components as possible. 
+
+Once you have the boards in hand and assembled, see the programming notes file for instructions on how to load the code. ATTENTION: This guide assumes the ATMEGA328P has a bootloader already installed, if working with new, "bare" chips you will need to burn a bootloader before installing the sketch. 
+
 # CURRENT KNOWN ISSUES:
 
 -PCB for ESP32-CAM is "Backwards". All components must be soldered to backside of PCB as opposed to topside with the exception of the 5-pin JST which can be put on the proper side. Enclosure has been designed with this mistake in mind.
