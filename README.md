@@ -4,7 +4,7 @@ Chickens are simple animals with lots of benefits. The downside? Humans are not 
 
 CoopCommand aims to reduce the daily labour of looking after chickens, improve their well-being as well as allow hobby-farmers the ability to go out for the night without worrying if their chickens are in danger from wandering predators. 
 
-#GOALS:
+# GOALS:
 
 -Ease of installation and configuration for non-technical individuals. 
 
@@ -16,9 +16,9 @@ CoopCommand aims to reduce the daily labour of looking after chickens, improve t
 
 -Camera for viewing inside of coop.
 
-#FEATURES:
+# FEATURES:
 
-#COOP COMMAND MAIN BOARD:
+# COOP COMMAND MAIN BOARD:
 
 -Pluggable Terminal Block connectors for all user-installed inputs/outputs.
 
@@ -53,7 +53,7 @@ CoopCommand aims to reduce the daily labour of looking after chickens, improve t
 -ATMEGA328P in DIP configuration, easily programmed through Arduino IDE.
 
 
-#ESP32 COOPCAM:
+# ESP32 COOPCAM:
 
 -ESP32-CAM AI-THINKER based.
 
@@ -65,7 +65,7 @@ CoopCommand aims to reduce the daily labour of looking after chickens, improve t
 
 -Serial connection to main board.
 
-#BLYNK:
+# BLYNK:
 
 -Override door open or closed.
 
