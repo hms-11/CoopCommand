@@ -21,9 +21,9 @@ WidgetLED led4(V4);
 
 // Your WiFi credentials & Authentication Code from Blynk
 // Set password to "" for open networks.
-const char* ssid = "1243fry";
-const char* password = "Speedway*1";
-char auth[] = "J5hypeP8nglbnEn8wgqMgn-vp2DiVamu";  //sent by Blynk
+const char* ssid = "xxxxx";
+const char* password = "xxxxxx";
+char auth[] = "xxxxxx";  //sent by Blynk
 
 // Serial Communication Variables
 
@@ -40,12 +40,12 @@ unsigned long lastPhotoTimer = 0; // Last time the flash timer was checked
 
 // To send Email using Gmail use port 465 (SSL) and SMTP Server smtp.gmail.com
 // YOU MUST ENABLE less secure app option https://myaccount.google.com/lesssecureapps?pli=1
-#define emailSenderAccount    "chickencammassrd@gmail.com"
-#define emailSenderPassword   "Coldbeer84"
+#define emailSenderAccount    "xxxxxx"
+#define emailSenderPassword   "xxxxxx"
 #define smtpServer            "smtp.gmail.com"
 #define smtpServerPort        465
 #define emailSubject          "CoopCam Photo"
-#define emailRecipient        "coreyearl1985@gmail.com"
+#define emailRecipient        "xxxxxxx"
 
 #define CAMERA_MODEL_AI_THINKER
 
