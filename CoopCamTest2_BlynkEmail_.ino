@@ -21,9 +21,9 @@ WidgetLED led4(V4);
 
 // Your WiFi credentials & Authentication Code from Blynk
 // Set password to "" for open networks.
-const char* ssid = "xxxxx";
-const char* password = "xxxxxx";
-char auth[] = "xxxxxx";  //sent by Blynk
+const char* ssid = "xxxxxxx";
+const char* password = "xxxxxxxxx";
+char auth[] = "xxxxxxxxx";  //sent by Blynk
 
 // Serial Communication Variables
 
@@ -35,13 +35,15 @@ bool takePhoto = false; //Did the Blynk App request a photo?
 
 unsigned long photoTimer = 500; // Time to run flash before taking photo
 unsigned long lastPhotoTimer = 0; // Last time the flash timer was checked
+unsigned long wifiTimer = 30000; // How often to try re-connecting if WIFI lost
+unsigned long lastWifiTimer = 0; // Last time the WIFI re-connect timer was checked
 
 
 
 // To send Email using Gmail use port 465 (SSL) and SMTP Server smtp.gmail.com
 // YOU MUST ENABLE less secure app option https://myaccount.google.com/lesssecureapps?pli=1
-#define emailSenderAccount    "xxxxxx"
-#define emailSenderPassword   "xxxxxx"
+#define emailSenderAccount    "xxxxxxx"
+#define emailSenderPassword   "xxxxxxx"
 #define smtpServer            "smtp.gmail.com"
 #define smtpServerPort        465
 #define emailSubject          "CoopCam Photo"
@@ -272,9 +274,21 @@ void photoRequest ( void ) {
   }
 }
 
+void wifiLost ( void ) {
+if (WiFi.status() == WL_CONNECTED) {
+  lastWifiTimer = millis();
+}
+else if (WiFi.status() !=WL_CONNECTED) {
+   if ((unsigned long)(millis() - lastWifiTimer) >= wifiTimer) {
+   ESP.restart();
+  }
+ }
+}
+
 void loop() {
   coopCom();
   photoRequest();
+  wifiLost();
   Blynk.run();
   if (digitalRead(BUTTON) == HIGH) {
     takePhoto = true;

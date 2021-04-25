@@ -1,4 +1,3 @@
-
 //                   COOP COMMAND WI-FI V1.2 (Full Function Field Test Ready)
 //              First version of Coop Command, Chicken Coop Control Software.
 //
@@ -96,7 +95,7 @@ int photocellReadingLevel = '2';        // photocell reading levels (night, ligh
 char camRx;                             // Command Character Received from ESP32-Cam
 char coopTx;                            //Communication From Coop Command
 bool newDataRx = false;                 //Has CoopCommand received a new command from the ESP32-Cam?
-unsigned long serialDelay = 30000;      //delay to send coop status updates
+unsigned long serialDelay = 5000;      //delay to send coop status updates
 unsigned long lastSerialSend = 0;       //the last time an update was sent
 
 
@@ -776,3 +775,4 @@ void loop() {
   humanInterface();
   coopOperation();
 }
+
