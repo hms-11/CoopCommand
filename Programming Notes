@@ -1,0 +1,80 @@
+# IMPORTANT NOTES FOR PROGRAMMING
+
+Neither the main board, or the CoopCam wifi board, have on-board USB-TTL serial converters. In order to program, or view the serial monitor you will need a programming adapter. 
+I've been using a CH340G based board for the ATMEGA328P and an FTDI based programming board for the ESP32-CAM. 
+Links:
+USB-TTL CH340G: https://www.universal-solder.ca/product/ch340g-usb-serial-converter/
+USB-TTL FTDI: https://www.amazon.ca/DSD-TECH-SH-U09C3-Isolated-Featuring/dp/B07TS3GPQ1/ref=sr_1_46?dchild=1&keywords=ftdi&qid=1618843968&sr=8-46
+
+
+# Programming Process:
+
+
+# ATMEGA328P:
+
+REQUIRED LIBRARIES:
+All required libraries are noted below, no custom libraries required for install, all can be found in the Library manager.
+EEPROM.h
+DallasTemperature.h
+OneWire.h
+Wire.h
+DHT.h
+LiquidCrystal_I2C.h
+
+-Open CoopCommandWifiRev1 in Arduino IDE.
+
+-Select proper board (Arduino Nano is used in this case).
+
+-Disconnect CoopCam and Power Connectors (programmer provides power to target).
+
+-Connect CH340G programmer in the following way: 5v-5v, GND-GND, TX-RX, RX-TX.
+
+-Plug programmer into USB and select proper port in Arduino IDE.
+
+-Hold down reset button while clicking "upload". Hold button down until IDE says "uploading".
+
+-Release reset button, program will upload and IDE will confirm with "upload complete". 
+
+-Disconnect programmer from CoopCommand Board.
+
+-Reconnect CoopCam.
+
+-Reconnect Power.
+
+
+# ESP32-CAM:
+
+REQUIRED LIBRARIES:
+You must install the ESP32 board add-on in the boards manager, details here: https://randomnerdtutorials.com/installing-the-esp32-board-in-arduino-ide-windows-instructions/
+All required libraries can be found in the library manager, no custom upload needed.
+esp_camera.h
+SPI.h
+driver/rtc_io.h
+ESP32_MailClient.h
+FS.h
+SPIFFS.h
+WiFi.h
+WiFiClient.h
+BlynkSimpleEsp32.h
+
+-Open CoopCamTest2_BlynkEmail in Arduino IDE
+
+-Edit required sections for your network (wifi,BLYNK and email settings).
+
+-Select proper board (AI-THINKER ESP32-CAM).
+
+-Disconnect CoopCam from CoopCommand main board.
+
+-Connect FTDI programmer to programming header: 5v-5v, GND-GND, TX-RX, RX-TX.
+
+-Hold down "flash" button while plugging programmer into USB port. Continue to hold down "flash" button.
+
+-Select proper port in Arduino IDE.
+
+-Click Upload. Once sketch has been compiled and has begun uploading to ESP32-CAM you can release the flash button. 
+
+-Once programming is complete, press reset button on ESP32-CAM.
+
+-Disconnect programmer. 
+
+-Connect CoopCam to CoopCommand main board. 

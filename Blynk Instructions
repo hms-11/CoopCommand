@@ -1,0 +1,19 @@
+#Blynk App Instructions
+
+1) Download the Blynk app on your mobile device and setup your account. 
+
+2) Create a new app, adding an ESP32 Dev Board as a device. 
+
+3) Generate an auth token and put that token in the appropriate spot in the CoopCam code (line 26, char auth[] = "xxxxxx";  //sent by Blynk)
+
+4) Add a "simple button" - Named  "Open Door" or similar. Output is GP14 and configured as a push button. style choices are up to you. 
+
+5) Repeat step 4, but name it "Close Door" and output is GP15.
+
+6) Make 4 LEDs, named "Door Open, Door Closed, Door Opening, Door Closing", set the colours as you want (I went with Open - RED, Closed - GREEN, Opening/Closing - Amber.
+
+7) Set the inputs for the LEDs. Door Open input V1, Door Closed input V2, Door Opening input V3, Door Closing input V4.
+
+8) Make another simple button, name it Camera, or something similar. GP13 as output. I like to add an "off label" of "Take Photo" so the button says what it is going to do. 
+
+You are ready to rock! 
