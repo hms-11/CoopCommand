@@ -1,3 +1,4 @@
+
 #define BLYNK_PRINT Serial
 #define BUTTON 13
 #define LED 4
@@ -13,6 +14,7 @@
 #include <WiFi.h>
 #include <WiFiClient.h>
 #include <BlynkSimpleEsp32.h>
+#include <ArduinoOTA.h>
 WidgetLED led1(V1);
 WidgetLED led2(V2);
 WidgetLED led3(V3);
@@ -21,9 +23,11 @@ WidgetLED led4(V4);
 
 // Your WiFi credentials & Authentication Code from Blynk
 // Set password to "" for open networks.
+
 const char* ssid = "xxxxxxx";
 const char* password = "xxxxxxxxx";
 char auth[] = "xxxxxxxxx";  //sent by Blynk
+
 
 // Serial Communication Variables
 
@@ -46,8 +50,6 @@ unsigned long lastWifiTimer = 0; // Last time the WIFI re-connect timer was chec
 #define emailSenderPassword   "xxxxxxx"
 #define smtpServer            "smtp.gmail.com"
 #define smtpServerPort        465
-#define emailSubject          "CoopCam Photo"
-#define emailRecipient        "xxxxxxx"
 
 #define CAMERA_MODEL_AI_THINKER
 
@@ -86,6 +88,7 @@ void setup() {
   // Serial, WI-FI & Blynk Communication
   Serial.begin(115200);
   Blynk.begin(auth, ssid, password);
+  ArduinoOTA.begin();
 
   // You can also specify server:
   //Blynk.begin(auth, ssid, pass, "blynk-cloud.com", 80);
@@ -289,6 +292,7 @@ void loop() {
   coopCom();
   photoRequest();
   wifiLost();
+  ArduinoOTA.handle();
   Blynk.run();
   if (digitalRead(BUTTON) == HIGH) {
     takePhoto = true;
