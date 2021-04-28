@@ -23,9 +23,11 @@ WidgetLED led4(V4);
 
 // Your WiFi credentials & Authentication Code from Blynk
 // Set password to "" for open networks.
-const char* ssid = "BELL101";
-const char* password = "425D5FADAAEF";
-char auth[] = "TTfMy-TdtJ0e_P23HuxVRrO3gqJ5d8Kl";  //sent by Blynk
+
+const char* ssid = "xxxxxxx";
+const char* password = "xxxxxxxxx";
+char auth[] = "xxxxxxxxx";  //sent by Blynk
+
 
 // Serial Communication Variables
 
@@ -44,12 +46,10 @@ unsigned long lastWifiTimer = 0; // Last time the WIFI re-connect timer was chec
 
 // To send Email using Gmail use port 465 (SSL) and SMTP Server smtp.gmail.com
 // YOU MUST ENABLE less secure app option https://myaccount.google.com/lesssecureapps?pli=1
-#define emailSenderAccount    "chickencammassrd@gmail.com"
-#define emailSenderPassword   "Coldbeer84"
+#define emailSenderAccount    "xxxxxxx"
+#define emailSenderPassword   "xxxxxxx"
 #define smtpServer            "smtp.gmail.com"
 #define smtpServerPort        465
-#define emailSubject          "Chicken Cam Picture!"
-#define emailRecipient        "searl61@gmail.com"
 
 #define CAMERA_MODEL_AI_THINKER
 

@@ -1,4 +1,3 @@
-
 //                   COOP COMMAND WI-FI V1.2 (Full Function Field Test Ready)
 //              First version of Coop Command, Chicken Coop Control Software.
 //
@@ -776,3 +775,4 @@ void loop() {
   humanInterface();
   coopOperation();
 }
+
