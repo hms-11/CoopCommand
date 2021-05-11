@@ -96,3 +96,5 @@ These settings, along with your wifi info and BLYNK authentication token will ne
 
 -CoopCommand user input buttons some times need to be pressed twice to change screens/adjust values. Unsure what the issue is at this time, minor usability issue. 
 
+-The BLYNK app is pretty basic, and not what I would like it to be. Improved integration (image showing in the app/10 second video stream) would be preffered, will look into AWS or other server hosting solutions. 
+
