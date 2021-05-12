@@ -11,6 +11,8 @@ You can also support this project through "Buy me a Coffee":
 <a href="https://www.buymeacoffee.com/AutoHobbyFarm" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
 
 In action: Here is a video of CoopCommand installed in my coop. https://www.youtube.com/watch?v=HNLnl-pNmuM
+
+
 # GOALS:
 
 - Ease of installation and configuration for non-technical individuals. 
@@ -25,7 +27,7 @@ In action: Here is a video of CoopCommand installed in my coop. https://www.yout
 
 # FEATURES:
 
-# COOP COMMAND MAIN BOARD:
+## COOP COMMAND MAIN BOARD:
 
 - Pluggable Terminal Block connectors for all user-installed inputs/outputs.
 
@@ -60,7 +62,7 @@ In action: Here is a video of CoopCommand installed in my coop. https://www.yout
 - ATMEGA328P in DIP configuration, easily programmed through Arduino IDE.
 
 
-# ESP32 COOPCAM:
+## ESP32 COOPCAM:
 
 - ESP32-CAM AI-THINKER based.
 
@@ -72,7 +74,7 @@ In action: Here is a video of CoopCommand installed in my coop. https://www.yout
 
 - Serial connection to main board.
 
-# BLYNK:
+## BLYNK:
 
 - Override door open or closed.
 
