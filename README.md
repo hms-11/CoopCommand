@@ -103,3 +103,14 @@ These settings, along with your wifi info and BLYNK authentication token will ne
 
 - The BLYNK app is pretty basic, and not what I would like it to be. Improved integration (image showing in the app/10 second video stream) would be preffered, will look into AWS or other server hosting solutions. 
 
+# PLANNED UPGRADES:
+
+- Improve BLYNK app with either onboard image display, or ~10 second video display in app with button press as opposed to emailing a picture. Would result in a much improved UX.
+
+- Figure out what is up with the multi-button press sometimes required. 
+
+- Improved EEPROM setting saves with more user settings being saved to EEPROM (currently door close light level, water heat on and ventilation fan on temps are saved).
+
+- "self configuration" of system on startup. I would like the door to run an initial cycle on first power-on so it can self test motor connections and adjust if connected "backwards" 
+
+- Easy deployment of CoopCam. Would like users to log into a self-hosted website on the ESP32-Cam, input their Wifi info and Blynk Authorization certificate. then have the system reboot on their network, attached to their Blynk app. 
