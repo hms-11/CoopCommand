@@ -13,6 +13,8 @@ You can also support this project through "Buy me a Coffee":
 In action: Here is a video of CoopCommand installed in my coop. https://www.youtube.com/watch?v=HNLnl-pNmuM
 
 
+[![CoopCommand Picture](https://github.com/hms-11/CoopCommand/blob/main/PXL_20210510_112449138.jpg)](https://github.com)
+
 # GOALS:
 
 - Ease of installation and configuration for non-technical individuals. 
