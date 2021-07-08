@@ -48,18 +48,16 @@ REQUIRED LIBRARIES:
 You must install the ESP32 board add-on in the boards manager, details here: https://randomnerdtutorials.com/installing-the-esp32-board-in-arduino-ide-windows-instructions/
 All required libraries can be found in the library manager, no custom upload needed.
 esp_camera.h
-SPI.h
-driver/rtc_io.h
-ESP32_MailClient.h
-FS.h
-SPIFFS.h
+ESP32_FTPClient.h
+soc/soc.h
+soc/rtc_cntl_reg.h
 WiFi.h
 WiFiClient.h
 BlynkSimpleEsp32.h
 
--Open CoopCamTest2_BlynkEmail in Arduino IDE
+-Open CoopCamRev2FTP in Arduino IDE
 
--Edit required sections for your network (wifi,BLYNK and email settings).
+-Edit required sections for your network (wifi,BLYNK and FTP settings).
 
 -Select proper board (AI-THINKER ESP32-CAM).
 
