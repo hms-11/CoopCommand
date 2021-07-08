@@ -80,7 +80,7 @@ In action: Here is a video of CoopCommand installed in my coop. https://www.yout
 
 - Override door open or closed.
 
-- Take a picture with the CoopCam and email it.
+- Take a picture with the CoopCam and display it in the app
 
 - Monitor door status (Open, Closed, Opening/Closing).
 
@@ -105,7 +105,6 @@ These settings, along with your wifi info and BLYNK authentication token will ne
 
 # PLANNED UPGRADES:
 
-- Improve BLYNK app with either onboard image display, or ~10 second video display in app with button press as opposed to emailing a picture. Would result in a much improved UX.
 
 - Figure out what is up with the multi-button press sometimes required. 
 
