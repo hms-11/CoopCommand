@@ -4,7 +4,7 @@
 #define DOORUP V7
 #define DOORDOWN V6
 #define BLYNK_HEARTBEAT 30
-#define BLYNK_FIRMWARE_VERSION        "0.1.0"
+
 
 #include "esp_camera.h"
 #include "Arduino.h"
@@ -20,12 +20,10 @@ WidgetLED led3(V3);
 WidgetLED led4(V4);
 
 
-#define WIFI_SSID "1243fry"
-#define WIFI_PASS "Speedway*1"
-// char auth[] = "c68pAfXJJOqSxdNe2L9IzxDJrjxYZhbA";  //sent by Blynk 1.0
-char auth[] = "TpbqS1UfrVQWTaXC5JG3PAeegQsziU3-";  //sent by Blynk 2.0
-#define BLYNK_TEMPLATE_ID "TMPL-flCABCq"
-#define BLYNK_DEVICE_NAME "CoopCommand"
+#define WIFI_SSID "xxxx"
+#define WIFI_PASS "xxxx"
+char auth[] = "xxxx";  //sent by Blynk 1.0
+
 
 // Pin definition for CAMERA_MODEL_AI_THINKER
 #define PWDN_GPIO_NUM     32
@@ -48,8 +46,8 @@ char auth[] = "TpbqS1UfrVQWTaXC5JG3PAeegQsziU3-";  //sent by Blynk 2.0
 
 
 char ftp_server[] = "files.000webhost.com";
-char ftp_user[] = "coopcommandimages";
-char ftp_pass[] ="Speedway*1";
+char ftp_user[] = "xxxx";
+char ftp_pass[] ="xxxx";
 
 bool takePhoto = false; 
 bool loading = false;
