@@ -4,7 +4,7 @@
 #define BLYNK_TEMPLATE_ID "TMPL-flCABCq"
 #define BLYNK_DEVICE_NAME "CoopCommand"
 #define BLYNK_HEARTBEAT 30
-#define BLYNK_FIRMWARE_VERSION        "0.1.6"
+#define BLYNK_FIRMWARE_VERSION        "0.2.0"
 #define BLYNK_PRINT Serial
 //#define BLYNK_DEBUG
 #define APP_DEBUG
@@ -69,9 +69,7 @@ bool takePhoto = false;
 bool loading = false;
 bool newImage = false;
 bool newDisplay = false;
-String displayImage = "https://coopcommandimages.000webhostapp.com/uploads/1.png";
-String coopImageURL = "https://coopcommandimages.000webhostapp.com/uploads/1.png";
-String coopImage = "coopPic.jpg";
+String coopImageURL; //= "https://coopcommandimages.000webhostapp.com/uploads/1.png";
 int i = 1;
 int ic = 1;
 int imageFlip = 1;
@@ -86,11 +84,12 @@ void setup() {
   delay(50);
   BlynkEdgent.begin();
   pinMode(LED, OUTPUT);
-  timer.setInterval(1000,coopCom);
-  timer.setInterval(250,loadingImage);
-  Blynk.setProperty(V0, "url", 1, coopImageURL);
-  Blynk.virtualWrite(V0, 1); 
-  WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0); //disable brownout detector
+  timer.setInterval(500,coopCom);
+  timer.setInterval(150,loadingImage);
+  Blynk.virtualWrite(V0, 3); 
+  
+  //disable brownout detector
+  WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0); 
   
   // Configure the Camera
 
@@ -139,15 +138,12 @@ void setup() {
 
 // Changes image in Blynk app depending on camera state
 void loadingImage( void ) {
-if (loading) {
-  displayImage= "https://coopcommandimages.000webhostapp.com/uploads/";
-  displayImage+= i;
-  displayImage+= ".png";
-  Blynk.setProperty(V0, "url", 1, displayImage); 
-  if (i <= 6) {
+if (loading) { 
+  Blynk.virtualWrite(V0, (i+2));
+  if (i <= 9) {
     i ++;
   }
-  else if (i > 6) {
+  else if (i > 9) {
     i = 1;
   }
 }
@@ -162,8 +158,8 @@ else if (!loading) {
     coopImageURL = "https://coopcommandimages.000webhostapp.com/uploads/coopPic7.jpg";
   }
   if (newImage) {
-  Blynk.setProperty(V0, "url", 1, coopImageURL);
-  Blynk.virtualWrite(V0, 1);
+  Blynk.setProperty(V0, "url", (ic-1), coopImageURL);
+  Blynk.virtualWrite(V0, (ic-1));
   newImage = false;       
 }
 i = 1; 
@@ -182,7 +178,6 @@ void sendPhoto ( void ) {
   digitalWrite(LED, LOW); 
   delay (50);
   if(!fb) {
-//    Serial.println("Camera capture failed");
     ESP.restart();
     return;
   }
@@ -305,11 +300,6 @@ timer.setTimeout(3000, []()
 });
 }
 
-// Sync app and device when connected
-
-//BLYNK_CONNECTED() {
-//    Blynk.syncAll();
-//}
 
 void loop() {
   BlynkEdgent.run();
