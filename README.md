@@ -95,13 +95,13 @@ These settings, along with your wifi info and BLYNK authentication token will ne
 
 # CURRENT KNOWN ISSUES:
 
-- PCB for ESP32-CAM is "Backwards". All components must be soldered to backside of PCB as opposed to topside with the exception of the 5-pin JST which can be put on the proper side. Enclosure has been designed with this mistake in mind.
+- 
 
 - Some Camera ribbon cables seem to be different lengths, some tweaking of CamLid file may be needed to ensure lens fits through housing. 
 
 - CoopCommand user input buttons some times need to be pressed twice to change screens/adjust values. Unsure what the issue is at this time, minor usability issue. 
 
-- The BLYNK app is pretty basic, and not what I would like it to be. Improved integration (image showing in the app/10 second video stream) would be preffered, will look into AWS or other server hosting solutions. 
+- The CoopCam and associated Blynk app should not be used at this point. Reboot can cause CoopCommand to go into manual door mode, leaving the door open at night. Main board functions fine running solo. 
 
 # PLANNED UPGRADES:
 
