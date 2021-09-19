@@ -25,20 +25,20 @@
 LiquidCrystal_I2C lcd(0x27, 20, 4);          // Set I2C Address and display size
 
 // pin assignments
-const int photocellPin = A0;                 // analog input pin for photocell
-const int button1 = 2;                       // pin for enter/back button
-const int button2 = 3;                       // pin for user input button 1
-const int button3 = 4;                       // pin for user input button 2
-const int bottomSwitchPin = A2;              // bottom switch is connected to pin A2
-const int topSwitchPin = A1;                 // top switch is connected to pin A1
+const int photocellPin                 = A0; // analog input pin for photocell
+const int button1                      = 2;  // pin for enter/back button
+const int button2                      = 3;  // pin for user input button 1
+const int button3                      = 4;  // pin for user input button 2
+const int bottomSwitchPin              = A2; // bottom switch is connected to pin A2
+const int topSwitchPin                 = A1; // top switch is connected to pin A1
 const int directionCloseCoopDoorMotorB = 8;  // direction close motor b - pin 8
-const int directionOpenCoopDoorMotorB = 6;   // direction open motor b - pin 9
-const int layLightRelay = 10;                //output pin controlling lay light relay
-const int fanRelay = 11;                     // output pin controlling ventilation fan relay
-const int fanLED = 5;                        // output pin for ventilation fan LED indicator
-const int motorLED = 7;                      // output pin for ventilation fan LED indicator
-const int heatRelay = 9;                     // output pin controlling water heater relay
-const int heatLED = A3;                      // output pin controlling water heater LED indicator
+const int directionOpenCoopDoorMotorB  = 6;  // direction open motor b - pin 9
+const int layLightRelay                = 10; // output pin controlling lay light relay
+const int fanRelay                     = 11; // output pin controlling ventilation fan relay
+const int fanLED                       = 5;  // output pin for ventilation fan LED indicator
+const int motorLED                     = 7;  // output pin for ventilation fan LED indicator
+const int heatRelay                    = 9;  // output pin controlling water heater relay
+const int heatLED                      = A3; // output pin controlling water heater LED indicator
 
 // Data wire is plugged into pin 12
 #define ONE_WIRE_BUS 12
@@ -59,63 +59,62 @@ DHT dht(DHTPIN, DHTTYPE);     // Initialize DHT sensor
 // Menu Variables and States
 
 // Timers
-unsigned long ds18b20Delay = 2000;                //delay so sensor is read every two seconds
-unsigned long lastDs18b20ReadingTime = 0;         // the last time the DS18B20 sensor was read
-unsigned long dhtDelay = 2000;                    //delay so sensor is read every 2 seconds
-unsigned long lastDhtReadingTime = 0;             // the last time the DHT22 was read
-unsigned long layLightTimer = 36000000;           // Timer to make sure at least 14 hours or "daylight"
-unsigned long lastDayLightReadingTime = 0;        // timer to keep track of how long it has been night
-unsigned long nightLightDelay = 300000;           // 5 minute timer to turn on the coop light if "enter" is pushed and it is night.
-unsigned long lastNightLightTime = 0;             // the last time the night light button was pushed
-unsigned long photocellReadingDelay = 600000;     // 600000 = 10 minute
-unsigned long lastPhotocellReadingTime = 0;       // the last time the photocell was read
+unsigned long ds18b20Delay             = 2000;     //delay so sensor is read every two seconds
+unsigned long lastDs18b20ReadingTime   = 0;        // the last time the DS18B20 sensor was read
+unsigned long dhtDelay                 = 2000;     //delay so sensor is read every 2 seconds
+unsigned long lastDhtReadingTime       = 0;        // the last time the DHT22 was read
+unsigned long layLightTimer            = 36000000; // Timer to make sure at least 14 hours or "daylight"
+unsigned long lastDayLightReadingTime  = 0;        // timer to keep track of how long it has been night
+unsigned long nightLightDelay          = 300000;   // 5 minute timer to turn on the coop light if "enter" is pushed and it is night.
+unsigned long lastNightLightTime       = 0;        // the last time the night light button was pushed
+unsigned long photocellReadingDelay    = 600000;   // 600000 = 10 minute
+unsigned long lastPhotocellReadingTime = 0;        // the last time the photocell was read
 
 // Sensor Variables
-bool doorOpen = false;                   // is the coop door open
-bool doorClosed = false;                // is the door closed
-bool doorOpenMove = false;              // is the door opening?
-bool doorCloseMove = false;             // is the door closing?
-int topSwitchState;                     // Current state (open/closed) of the top limit switch
-int bottomSwitchState;                  // Current state (open/closed) of the bottom limit switch
-bool doorSensor = true;                 // is the door in automatic or manual mode
-bool ventOn = false;                    // is the ventilation fan relay on or off
-bool heaterOn = true;                  // is the water heater function running
-bool nightTimer = false;                // is it night time
-bool layLightOn = true;                 // is the Lay Light time monitoring system on
-bool nightLightOn = false;              // is the Night Light on
-int coopTemp = 0;                       // Interior Coop Temperature Reading
-int closeDoor = 20;                    // Light level to close coop door (user editable, EEPROM saved)
-int openDoor = closeDoor + 10;         // Light level to open coop door
-int hotTemp = 30;                       // Temperature to turn on Ventilation Fan Relay (user editable, EEPROM saved)
-int coldTemp = 3;                       // Temperature to turn on Water Heat Relay (user editable, EEPROM saved)
-int waterTemp = 0;                      // Water Tempterature Reading
-float hum;                              // Stores humidity value from DHT22
-float temp;                             // Stores temperature value from DHT22
-int photocellReading;                   // analog reading of the photocell
-int photocellReadingLevel = '2';        // photocell reading levels (night, light, twilight)
+bool doorOpen          = false;          // is the coop door open
+bool doorClosed        = false;          // is the door closed
+bool doorOpenMove      = false;          // is the door opening?
+bool doorCloseMove     = false;          // is the door closing?
+int topSwitchState;                      // Current state (open/closed) of the top limit switch
+int bottomSwitchState;                   // Current state (open/closed) of the bottom limit switch
+bool doorSensor        = true;           // is the door in automatic or manual mode
+bool ventOn            = false;          // is the ventilation fan relay on or off
+bool heaterOn          = true;           // is the water heater function running
+bool nightTimer        = false;          // is it night time
+bool layLightOn        = true;           // is the Lay Light time monitoring system on
+bool nightLightOn      = false;          // is the Night Light on
+int coopTemp           = 0;              // Interior Coop Temperature Reading
+int closeDoor          = 20;             // Light level to close coop door (user editable, EEPROM saved)
+int openDoor           = closeDoor + 10; // Light level to open coop door
+int hotTemp            = 30;             // Temperature to turn on Ventilation Fan Relay (user editable, EEPROM saved)
+int coldTemp           = 3;              // Temperature to turn on Water Heat Relay (user editable, EEPROM saved)
+int waterTemp          = 0;              // Water Tempterature Reading
+float hum;                               // Stores humidity value from DHT22
+float temp;                              // Stores temperature value from DHT22
+int photocellReading;                    // analog reading of the photocell
+int photocellReadingLevel = '2';         // photocell reading levels (night, light, twilight)
 
 // UART Communication
-char camRx;                             // Command Character Received from ESP32-Cam
-char coopTx;                            //Communication From Coop Command
-bool newDataRx = false;                 //Has CoopCommand received a new command from the ESP32-Cam?
-unsigned long serialDelay = 1000;      //delay to send coop status updates
-unsigned long lastSerialSend = 0;       //the last time an update was sent
-
+char camRx;                           // Command Character Received from ESP32-Cam
+char coopTx;                          //Communication From Coop Command
+bool newDataRx               = false; //Has CoopCommand received a new command from the ESP32-Cam?
+unsigned long serialDelay    = 1000;  //delay to send coop status updates
+unsigned long lastSerialSend = 0;     //the last time an update was sent
 
 // Human Machine Interface Variables
-bool menuOn = true;                     // state of the display menu
-int buttonState1 = 0;                   // current state of button1
-int buttonState2 = 0;                   // current state of button2
-int buttonState3 = 0;                   // current state of button3
-int lastButtonState1 = 0;               // previous state of button1
-int lastButtonState2 = 0;               // previous state of button2
-int lastButtonState3 = 0;               // previous state of button3
-unsigned long displayTimer = 8000;      // timer to automatically turn off the display
-unsigned long lastDisplayTimer = 0;     // last time the turn off delay was re-set
-int optionSelect = 0;                   // which menu option is selected
-int lastOptionSelect = 0;               // the last menu option that was selected
-int lastItemSelect = 0;                 // which menu item is selected
-int itemSelect = 0;                     // which menu item was selected last
+bool menuOn                    = true; // state of the display menu
+int buttonState1               = 0;    // current state of button1
+int buttonState2               = 0;    // current state of button2
+int buttonState3               = 0;    // current state of button3
+int lastButtonState1           = 0;    // previous state of button1
+int lastButtonState2           = 0;    // previous state of button2
+int lastButtonState3           = 0;    // previous state of button3
+unsigned long displayTimer     = 8000; // timer to automatically turn off the display
+unsigned long lastDisplayTimer = 0;    // last time the turn off delay was re-set
+int optionSelect               = 0;    // which menu option is selected
+int lastOptionSelect           = 0;    // the last menu option that was selected
+int lastItemSelect             = 0;    // which menu item is selected
+int itemSelect                 = 0;    // which menu item was selected last
 String heatStatus;
 String doorStatus;
 String doorLock;
@@ -126,28 +125,27 @@ String motorStatus;
 
 //EEPROM addresses and variables
 
-const int coldTempAddress = 0;                // EEPROM address for the water heat turn on temperature
-const int hotTempAddress = 1;                 // EEPROM address for the ventilation fan turn on temperature
-const int closeDoorAddress = 2;               // EEPROM address for the door close light level
-const int firstBootAddress = 3;               // EEPROM address to see if it is first boot of the program
-const int layLightAddress = 4;                // EEPROM address to see if LayLight is enabled or not               
-int firstBootCount;                           // value to see if it is the first boot or not
+const int coldTempAddress  = 0; // EEPROM address for the water heat turn on temperature
+const int hotTempAddress   = 1; // EEPROM address for the ventilation fan turn on temperature
+const int closeDoorAddress = 2; // EEPROM address for the door close light level
+const int firstBootAddress = 3; // EEPROM address to see if it is first boot of the program
+const int layLightAddress  = 4; // EEPROM address to see if LayLight is enabled or not               
+int firstBootCount;             // value to see if it is the first boot or not
 
 void setup() {
 
-  firstBootCount = EEPROM.read(3);
+  firstBootCount = EEPROM.read(firstBootAddress);
   if (firstBootCount == 100) {
-    coldTemp = EEPROM.read(0);
-    hotTemp = EEPROM.read(1);
-    closeDoor = EEPROM.read(2);
-    layLightOn = EEPROM.read(4);
-  }
-  else if (firstBootCount != 100) {
-    EEPROM.write(0,3);
-    EEPROM.write(1,30);
-    EEPROM.write(2,10);
-    EEPROM.write(3,100);
-    EEPROM.write(4,true);
+    coldTemp = EEPROM.read(coldTempAddress);
+    hotTemp = EEPROM.read(hotTempAddress);
+    closeDoor = EEPROM.read(closeDoorAddress);
+    layLightOn = EEPROM.read(layLightAddress);
+  } else {
+    EEPROM.write(coldTempAddress, 3);
+    EEPROM.write(hotTempAddress, 30);
+    EEPROM.write(closeDoorAddress, 10);
+    EEPROM.write(firstBootAddress, 100);
+    EEPROM.write(layLightAddress, true);
   }
   dht.begin();
   sensors.begin();
@@ -180,68 +178,50 @@ void setup() {
   lcd.clear();
   photocellReading = analogRead(photocellPin);
   photocellReading = map(photocellReading, 0, 1023, 0, 100);
-
 }
 
 // Function to Communicate with ESP32-CAM
 void camCommand() {
   if (Serial.available() > 0) {
     camRx = Serial.read();
-    newDataRx = true;
-  }
-  if (newDataRx == true) {
-    if (camRx == 'U') { //If the ESP32 says to put the door up
-      photocellReadingLevel = '3';
-      lastPhotocellReadingTime = millis();
-      newDataRx = false;
+    switch (camRx){
+      case 'U': //If the ESP32 says to put the door up
+        photocellReadingLevel = '3';
+        lastPhotocellReadingTime = millis();
+        break;
+      case 'D': //If the ESP32 says to put the door down
+        photocellReadingLevel = '1';
+        lastPhotocellReadingTime = millis();
+        break;
+      case 'L': //If the ESP32 says it is taking a picture
+        digitalWrite(layLightRelay, HIGH);
+        break;
+      case 'N': //If the ESP32 says it is NOT taking a picture
+        digitalWrite(layLightRelay, LOW);
+        break;
+      case 'M': //If the ESP32 says to put the door down and go to manual mode
+        photocellReadingLevel = '1';
+        doorSensor = false;
+        doorLock = "Door Locked Closed";
+        break;
+      case 'C': //If the ESP32 says to put the door up and go to manual mode
+        photocellReadingLevel = '3';
+        doorSensor = false;
+        doorLock = "Door Locked Open";
+        break;
     }
-    else if (camRx == 'D') { //If the ESP32 says to put the door down
-      photocellReadingLevel = '1';
-      lastPhotocellReadingTime = millis();
-      newDataRx = false;
-    }
-    else if (camRx == 'L') { //If the ESP32 says it is taking a picture
-      digitalWrite(layLightRelay, HIGH);
-      newDataRx = false;
-    }
-    else if (camRx == 'N') { //If the ESP32 says it is NOT taking a picture
-      digitalWrite(layLightRelay, LOW);
-      newDataRx = false;
-    }
-    else if (camRx == 'M') { //If the ESP32 says to put the door down and go to manual mode
-      photocellReadingLevel = '1';
-      newDataRx = false;
-      doorSensor = false;
-      doorLock = "Door Locked Closed";
-    }
-    else if (camRx == 'C') { //If the ESP32 says to put the door up and go to manual mode
-      photocellReadingLevel = '3';
-      newDataRx = false;
-      doorSensor = false;
-      doorLock = "Door Locked Open";
-    }
-
   }
   if ((unsigned long)(millis() - lastSerialSend) >= serialDelay) {
     lastSerialSend = millis();
     if (doorClosed) { // If door is closed
       Serial.print('S');
-      if (doorSensor) {
-        Serial.print('A'); // if door is in automatic mode
-      }
-      else if (!doorSensor) {
-        Serial.print('Q'); // if door is in manual mode
-      }
+      if (doorSensor) Serial.print('A'); // if door is in automatic mode
+      else            Serial.print('Q'); // if door is in manual mode
     }
     else if (doorOpen) { // If door is open
       Serial.print('O');
-      if (doorSensor) {
-        Serial.print('A'); // if door is in automatic mode
-      }
-      else if (!doorSensor) {
-        Serial.print('Q'); // if door is in manual mode
-
-      }
+      if (doorSensor) Serial.print('A'); // if door is in automatic mode
+      else            Serial.print('Q'); // if door is in manual mode
     }
     else if (doorOpenMove) { //If door is opening
       Serial.print('U');
@@ -284,23 +264,19 @@ void layLight() {
     if (!nightTimer) { // if it is not dark
       lastDayLightReadingTime = millis();
       digitalWrite(layLightRelay, LOW); // turn off the lay light
-    }
-    else if (nightTimer) { // if it is dark
+    } else { // if it is dark
       if ((unsigned long)(millis() - lastDayLightReadingTime) >= layLightTimer) { //if it has been dark more than 10 hours (or whatever the timer is
         digitalWrite(layLightRelay, HIGH); // turn on the lay light
-      }
-      else {
+      } else {
         digitalWrite(layLightRelay, LOW); // turn off the lay light
       }
     }
-  }
-  else if (!layLightOn) {
+  } else {
     layLightStatus = "LayLight Disabled";
   }
   if (nightLightOn) { // if someone wants the light on
     digitalWrite(layLightRelay, HIGH);
-  }
-  else if ((unsigned long)(millis() - lastNightLightTime) >= nightLightDelay) {
+  } else if ((unsigned long)(millis() - lastNightLightTime) >= nightLightDelay) {
     digitalWrite (layLightRelay, LOW);
     nightLightOn = false;
   }
@@ -309,58 +285,52 @@ void layLight() {
 // Function to Control Water Heat Relay
 void waterHeat() {
   if (heaterOn) {
-  if ((unsigned long)(millis() - lastDs18b20ReadingTime) >= ds18b20Delay) {
-    lastDs18b20ReadingTime = millis();
-    sensors.requestTemperatures();
-    waterTemp = sensors.getTempCByIndex(0);
-    if (waterTemp == -127) {
-      heatStatus = "Water Tmp Sensor N/A";
-      digitalWrite(heatRelay, LOW); //turn off the water heater
-      digitalWrite(heatLED, LOW); // turn off the LED indicator
-      waterTemp = 0;
-      heaterOn = false;
-    }
-    else if (waterTemp >= (coldTemp + 3)) { // if the temperature is 3 degrees above the trigger temp
-      digitalWrite(heatRelay, LOW); //turn off the water heater
-      digitalWrite(heatLED, LOW); // turn off the LED indicator
-      heatStatus = "Water Heater Off";
-    }
-    else if (waterTemp < coldTemp) { //if the temperature is below the cold temperature
-      digitalWrite(heatRelay, HIGH); //turn on the water heater
-      digitalWrite(heatLED, HIGH); // turn on the LED indicator
-      heatStatus = "Water Heater On";
+    if ((unsigned long)(millis() - lastDs18b20ReadingTime) >= ds18b20Delay) {
+      lastDs18b20ReadingTime = millis();
+      sensors.requestTemperatures();
+      waterTemp = sensors.getTempCByIndex(0);
+      if (waterTemp == -127) {
+        heatStatus = "Water Tmp Sensor N/A";
+        digitalWrite(heatRelay, LOW); //turn off the water heater
+        digitalWrite(heatLED, LOW); // turn off the LED indicator
+        waterTemp = 0;
+        heaterOn = false;
+      }
+      else if (waterTemp >= (coldTemp + 3)) { // if the temperature is 3 degrees above the trigger temp
+        digitalWrite(heatRelay, LOW); //turn off the water heater
+        digitalWrite(heatLED, LOW); // turn off the LED indicator
+        heatStatus = "Water Heater Off";
+      }
+      else if (waterTemp < coldTemp) { //if the temperature is below the cold temperature
+        digitalWrite(heatRelay, HIGH); //turn on the water heater
+        digitalWrite(heatLED, HIGH); // turn on the LED indicator
+        heatStatus = "Water Heater On";
+      }
     }
   }
-}
 }
 
 // Function to Monitor Light Levels
 void photoCell() { // function to be called repeatedly - per coopPhotoCellTimer set in setup
   if (doorSensor) {
     doorStatus = "Automatic";
-  if ((unsigned long)(millis() - lastPhotocellReadingTime) >= photocellReadingDelay) {
-    photocellReading = analogRead(photocellPin);
-    photocellReading = map(photocellReading, 0, 1023, 0, 100);
-    lastPhotocellReadingTime = millis();
-
-    //  set photocell threshholds
-    if (photocellReading >= 0 && photocellReading <= closeDoor) { // Night Setting based on user or default selected low light trigger
-      photocellReadingLevel = '1';
-      nightTimer = true;
+    if ((unsigned long)(millis() - lastPhotocellReadingTime) >= photocellReadingDelay) {
+      photocellReading = analogRead(photocellPin);
+      photocellReading = map(photocellReading, 0, 1023, 0, 100);
+      lastPhotocellReadingTime = millis();
+      //  set photocell threshholds
+      if (photocellReading >= 0 && photocellReading <= closeDoor) { // Night Setting based on user or default selected low light trigger
+        photocellReadingLevel = '1';
+        nightTimer = true;
+      } else if (photocellReading  >= closeDoor && photocellReading <= openDoor) { // Twighlight setting
+        photocellReadingLevel = '2';
+        nightTimer = true;
+      } else if (photocellReading  >= (openDoor + 1) ) { //Daylight Setting
+        photocellReadingLevel = '3';
+        nightTimer = false;
+      }
     }
-
-    else if (photocellReading  >= closeDoor && photocellReading <= openDoor) { // Twighlight setting
-      photocellReadingLevel = '2';
-      nightTimer = true;
-    }
-
-    else if (photocellReading  >= (openDoor + 1) ) { //Daylight Setting
-      photocellReadingLevel = '3';
-      nightTimer = false;
-    }
-  }
-}
-  else if (!doorSensor) {
+  } else {
     doorStatus = "Manual";
   }
 }
@@ -372,8 +342,6 @@ void stopCoopDoorMotorB() {
   digitalWrite(motorLED, LOW);
 }
 
-
-
 // close the coop door motor
 void closeCoopDoorMotorB() {
   if (bottomSwitchState == 1) {                         //if the bottom reed switch is open
@@ -381,14 +349,13 @@ void closeCoopDoorMotorB() {
     digitalWrite (directionOpenCoopDoorMotorB, LOW);       // turn off motor open direction
     digitalWrite(motorLED, HIGH);
   }
-  if ((bottomSwitchState == 1) && (topSwitchState == 1)) {   // if both reed switches are open
+  if (bottomSwitchState == 1 && topSwitchState == 1) {   // if both reed switches are open
     doorCloseMove = true;
     doorOpenMove = false;
     doorOpen = false;
     doorClosed = false;
     motorStatus = "CLOSING";
   }
-
   if (bottomSwitchState == 0) {                     // if bottom reed switch circuit is closed
     stopCoopDoorMotorB();
     doorOpenMove = false;
@@ -431,28 +398,14 @@ void readSwitches() {
 // do the coop door
 void doCoopDoor() {
   if (photocellReadingLevel  == '1') {              // if it's dark
-    if (photocellReadingLevel != '2') {             // if it's not twilight
-      if (photocellReadingLevel != '3') {           // if it's not light
-        readSwitches();
-        closeCoopDoorMotorB();                      // close the door
-      }
-    }
-  }
-  else if (photocellReadingLevel  == '3') {              // if it's light
-    if (photocellReadingLevel != '2') {             // if it's not twilight
-      if (photocellReadingLevel != '1') {           // if it's not dark
-        readSwitches();
-        openCoopDoorMotorB();                       // Open the door
-      }
-    }
-  }
-  else if (photocellReadingLevel == '2') {          // if it's twilight
-    if (photocellReadingLevel != '3') {             // if it's not light
-      if (photocellReadingLevel != '1') {           // if it's not dark
-        readSwitches();
-        stopCoopDoorMotorB();
-      }
-    }
+    readSwitches();
+    closeCoopDoorMotorB();                      // close the door
+  } else if (photocellReadingLevel  == '3') {              // if it's light
+    readSwitches();
+    openCoopDoorMotorB();                       // Open the door
+  } else if (photocellReadingLevel == '2') {          // if it's twilight
+    readSwitches();
+    stopCoopDoorMotorB();
   }
 }
 
@@ -465,42 +418,31 @@ void readButtons() {
       lastDisplayTimer = millis();
       if ((itemSelect == 0) && (optionSelect != 0)) { //if we are not in the settings change
         itemSelect = 1;
-      }
-      else if (itemSelect == 1) {
+      } else if (itemSelect == 1) {
         itemSelect = 0;
       }
     }
     lastButtonState1 = buttonState1;
   }
   if (itemSelect == 0) { // if we are not adjusting settings
-
     if (buttonState3 != lastButtonState3) { //if the right button has been pressed
       if (buttonState3 == LOW) { //if the right button has been pressed
         lastDisplayTimer = millis();
-        if ((optionSelect <= 6) && (optionSelect != 6)) { //if we are not past the last menu screen
-          optionSelect ++;
-        }
-        else if (optionSelect == 6) { // if we are at the last menu screen
-          optionSelect = 0;
-        }
+        optionSelect = (++optionSelect) % 6; //modulo operation simplifies switching to first row
       }
       lastButtonState3 = buttonState3;
-    }
-    else if (buttonState2 != lastButtonState2) { //if the left button has been pressed
+    } else if (buttonState2 != lastButtonState2) { //if the left button has been pressed
       if (buttonState2 == LOW) { //if the left button has been pressed
         lastDisplayTimer = millis();
         if (optionSelect > 0) { //if we are not at the first menu screen
           optionSelect --;
-        }
-        else if (optionSelect == 0) {
+        } else if (optionSelect == 0) {
           optionSelect = 6;
         }
       }
       lastButtonState2 = buttonState2;
     }
-  }
-
-  else if (itemSelect == 1) { // if we are adjusting settings
+  } else if (itemSelect == 1) { // if we are adjusting settings
     buttonState2 = (digitalRead(button2));
     buttonState3 = (digitalRead(button3));
 
@@ -508,92 +450,52 @@ void readButtons() {
       if (buttonState3 == LOW) { //if the right button has been pressed
         lastDisplayTimer = millis();
         if (optionSelect == 1) { //if we are adjusting the Vent Fan Temp
-          hotTemp = (hotTemp + 5);
-        }
-        else if (optionSelect == 2) { // if we are adjusting the Water Heater Temp
-          coldTemp = (coldTemp + 1);
-        }
-        else if (optionSelect == 3)  { // if we are adjusting the Door Light Sensor
-          closeDoor = (closeDoor + 1);
-          if (closeDoor >= 26) {
-            closeDoor = 25;
-          }
+          hotTemp += 5;
+        } else if (optionSelect == 2) { // if we are adjusting the Water Heater Temp
+          coldTemp++;
+        } else if (optionSelect == 3)  { // if we are adjusting the Door Light Sensor
+          if (closeDoor < 25) closeDoor++;
         }
       }
       lastButtonState3 = buttonState3;
-    }
-    else if (buttonState2 != lastButtonState2) { //if the left button has been pressed
+    } else if (buttonState2 != lastButtonState2) { //if the left button has been pressed
       if (buttonState2 == LOW) { //if the left button has been pressed
         lastDisplayTimer = millis();
         if (optionSelect == 1) { //if we are adjusting the Vent Fan Temp
-          hotTemp = (hotTemp - 5);
-        }
-        else if (optionSelect == 2) { // if we are adjusting the Water Heater Temp
-          coldTemp = (coldTemp - 1);
-        }
-        else if (optionSelect == 3)  { // if we are adjusting the Door Light Sensor
-          closeDoor = (closeDoor - 1);
-          if (closeDoor <= 1) {
-            closeDoor = 1;
-          }
+          hotTemp -= 5);
+        } else if (optionSelect == 2) { // if we are adjusting the Water Heater Temp
+          coldTemp++;
+        } else if (optionSelect == 3) { // if we are adjusting the Door Light Sensor
+          if (closeDoor > 1) closeDoor--;
         }
       }
       lastButtonState2 = buttonState2;
     }
     if (optionSelect == 4) { // if we are overriding the coop door
-      if (doorOpen) { // if the coop door is open
-        itemSelect = 0;
-        optionSelect = 0; //back to front screen
-        lastPhotocellReadingTime = millis();
-        lastDisplayTimer = millis();
-        photocellReadingLevel = '1';
-
-      }
-      else if (!doorOpen) { //if the coop door is closed
-        itemSelect = 0;
-        optionSelect = 0; //back to front screen
-        lastDisplayTimer = millis();
-        lastPhotocellReadingTime = millis();
-        photocellReadingLevel = '3';
-      }
+      itemSelect = 0;
+      optionSelect = 0; //back to front screen
+      lastDisplayTimer = millis();
+      lastPhotocellReadingTime = millis();
+      photocellReadingLevel = doorOpen ? '1' : '3';
     }
     if (optionSelect == 5) { // if we are turning the laylight option on/off
-      if (layLightOn) { // if the lay light option is on
-        itemSelect = 0;
-        optionSelect = 0; //back to front screen
-        lastDisplayTimer = millis();
-        layLightOn = false;
-      }
-      else if (!layLightOn) { //if the lay light option is off
-        itemSelect = 0;
-        optionSelect = 0; //back to front screen
-        lastDisplayTimer = millis();
-        layLightOn = true;
-      }
+      itemSelect = 0;
+      optionSelect = 0; //back to front screen
+      lastDisplayTimer = millis();
+      layLightOn = !layLightOn;
     }
-
     if (optionSelect == 6) { // if we are switching the door mode
-      if (doorSensor) { // if the door is in automatic mode
-        itemSelect = 0;
-        optionSelect = 0; //back to front screen
-        lastDisplayTimer = millis();
-        doorSensor = false;
-      }
-      else if (!doorSensor) { //if the door is in manual mode
-        itemSelect = 0;
-        optionSelect = 0; //back to front screen
-        lastDisplayTimer = millis();
-        doorSensor = true;
-      }
+      itemSelect = 0;
+      optionSelect = 0; //back to front screen
+      lastDisplayTimer = millis();
+      doorSensor = !doorSensor;
     }
-
   }
 }
 
 void displayMenu() {
   if (menuOn) { // if the display is supposed to be on
-    lcd.display(); // turn the display on
-    lcd.backlight();
+    lcd.on(); // turn the display on
 
     if (optionSelect != lastOptionSelect) {
       lcd.clear();
@@ -618,27 +520,19 @@ void displayMenu() {
       break;
 
       case 1:
+        lcd.home();
+        lcd.print("  Coop Temp: ");
+        lcd.print(coopTemp);
+        lcd.print(" C");
+        lcd.setCursor(0, 1);
+        lcd.print("<                  >");
+        lcd.setCursor(0, 2);
         if (itemSelect == 0) {
-          lcd.home();
-          lcd.print("  Coop Temp: ");
-          lcd.print(coopTemp);
-          lcd.print(" C");
-          lcd.setCursor(0, 1);
-          lcd.print("<                  >");
-          lcd.setCursor(0, 2);
           lcd.print("  System Status: ");
           lcd.setCursor(0, 3);
           lcd.print(fanStatus);
-        }
-        if (itemSelect == 1) {
-          lcd.home();
-          lcd.print("  Coop Temp: ");
-          lcd.print(coopTemp);
-          lcd.print(" C");
-          lcd.setCursor(0, 1);
-          lcd.print("<                  >");
-          lcd.setCursor(1, 2);
-          lcd.print("Fan On Temp: ");
+        } else if (itemSelect == 1) {
+          lcd.print(" Fan On Temp: ");
           lcd.print(hotTemp);
           lcd.print(" C");
         }
@@ -658,51 +552,46 @@ void displayMenu() {
           lcd.print(heatStatus);
         }
         if (itemSelect == 1) {
+          lcd.home();
           if (heaterOn) {
-          lcd.home();
-          lcd.print("  Water Temp: ");
-          lcd.print(waterTemp);
-          lcd.print(" C");
-          lcd.setCursor(0, 1);
-          lcd.print("<                  >");
-          lcd.setCursor(1, 2);
-          lcd.print("Heat On Temp: ");
-          lcd.print(coldTemp);
-          lcd.print(" C");
-          }
-          else if (!heaterOn) {
-          lcd.home();
-          lcd.print("  SYSTEM DISABLED");
-          lcd.setCursor(0, 2);
-          lcd.print("No Comm With Sensor");
+            lcd.print("  Water Temp: ");
+            lcd.print(waterTemp);
+            lcd.print(" C");
+            lcd.setCursor(0, 1);
+            lcd.print("<                  >");
+            lcd.setCursor(1, 2);
+            lcd.print("Heat On Temp: ");
+            lcd.print(coldTemp);
+            lcd.print(" C");
+          } else {
+            lcd.print("  SYSTEM DISABLED");
+            lcd.setCursor(0, 2);
+            lcd.print("No Comm With Sensor");
           }
         }
         break;
 
       case 3:
         if (itemSelect == 0) {
-          if (doorSensor) {
-          lcd.home();
-          lcd.print(" Coop Door: ");
-          lcd.print(motorStatus);
-          lcd.setCursor(0, 1);
-          lcd.print("<                  >");
-          lcd.setCursor(3, 2);
-          lcd.print("Light Value: ");
-          lcd.setCursor(7, 3);
-          lcd.print(photocellReading);
-        }
-        if (!doorSensor) {
           lcd.home();
           lcd.print("  Coop Door: ");
-          lcd.print(doorStatus);
-          lcd.setCursor(0, 1);
-          lcd.print("<                  >");
-          lcd.setCursor(3, 2);
-          lcd.print("Door Status:");
-          lcd.setCursor(0, 3);
-          lcd.print(motorStatus);
-        }
+          if (doorSensor) {
+            lcd.print(motorStatus);
+            lcd.setCursor(0, 1);
+            lcd.print("<                  >");
+            lcd.setCursor(3, 2);
+            lcd.print("Light Value: ");
+            lcd.setCursor(7, 3);
+            lcd.print(photocellReading);
+          } else {
+            lcd.print(doorStatus);
+            lcd.setCursor(0, 1);
+            lcd.print("<                  >");
+            lcd.setCursor(3, 2);
+            lcd.print("Door Status:");
+            lcd.setCursor(0, 3);
+            lcd.print(motorStatus);
+          }
         }
         if (itemSelect == 1) {
           lcd.home();
@@ -725,42 +614,26 @@ void displayMenu() {
           lcd.setCursor(1, 3);
           lcd.print("ENTER to OVERRIDE");
         }
-
         break;
 
       case 5:
-        if (itemSelect == 0 && layLightOn == true) {
-          lcd.home();
-          lcd.print("  LayLight Timer:");
-          lcd.setCursor(0, 1);
-          lcd.print("<      ON          >");
-          lcd.setCursor(0, 3);
-          lcd.print("  ENTER to turn OFF");
-        }
-        if (itemSelect == 0 && layLightOn == false) {
-          lcd.home();
-          lcd.print("  LayLight Timer:");
-          lcd.setCursor(0, 1);
-          lcd.print("<     OFF         >");
-          lcd.setCursor(0, 3);
-          lcd.print("  ENTER to turn ON");
+        if (itemSelect == 0){
+            lcd.home();
+            lcd.print("  LayLight Timer:");
+            lcd.setCursor(0, 1);
+            lcd.print( layLightOn ? "<      ON         >" : "<     OFF         >");
+            lcd.setCursor(0, 3);
+            lcd.print("  ENTER to turn ");
+            lcd.print( layLightOn ? "OFF" : "ON");
         }
         break;
 
       case 6:
-        if (itemSelect == 0 && (doorSensor)) {
+        if (itemSelect == 0){
           lcd.home();
           lcd.print("  Coop Door Mode:");
           lcd.setCursor(0, 1);
-          lcd.print("      AUTOMATIC    ");
-          lcd.setCursor(0, 3);
-          lcd.print("  ENTER to Switch  ");
-        }
-        if (itemSelect == 0 && (!doorSensor)) {
-          lcd.home();
-          lcd.print("  Coop Door Mode:");
-          lcd.setCursor(0, 1);
-          lcd.print("       MANUAL       ");
+          lcd.print(doorSensor ? "      AUTOMATIC    " : "      MANUAL       ");
           lcd.setCursor(0, 3);
           lcd.print("  ENTER to Switch  ");
         }
@@ -772,8 +645,7 @@ void displayMenu() {
     }
   }
   if (!menuOn) { // if the display is supposed to be off
-    lcd.noDisplay(); // turn the display off
-    lcd.noBacklight();
+    lcd.off(); // turn the display off
     optionSelect = 0; //back to front screen
     itemSelect = 0;
   }
@@ -794,7 +666,6 @@ void settingSave() {
   EEPROM.update(coldTempAddress, coldTemp);
   EEPROM.update(closeDoorAddress, closeDoor);
   EEPROM.update(layLightAddress, layLightOn);
-  
 }
 
 void humanInterface() {
