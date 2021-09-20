@@ -95,11 +95,7 @@ These settings, along with your wifi info and BLYNK authentication token will ne
 
 # CURRENT KNOWN ISSUES:
 
-- 
-
-- Some Camera ribbon cables seem to be different lengths, some tweaking of CamLid file may be needed to ensure lens fits through housing. 
-
-- CoopCommand user input buttons some times need to be pressed twice to change screens/adjust values. Unsure what the issue is at this time, minor usability issue. 
+- Some Camera ribbon cables seem to be different lengths, some tweaking of CamLid file may be needed to ensure lens fits through housing.  
 
 - The CoopCam and associated Blynk app should not be used at this point. Reboot can cause CoopCommand to go into manual door mode, leaving the door open at night. Main board functions fine running solo. 
 
