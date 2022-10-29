@@ -1,6 +1,6 @@
 # CoopCommand
 
-#Development on this project has stopped. See [CoopCommand ESP32](https://github.com/hms-11/CoopCommandESP32) for the next generation controller and code.
+# Development on this project has stopped. See [CoopCommand ESP32](https://github.com/hms-11/CoopCommandESP32) for the next generation controller and code.
 
 Chickens are simple animals with lots of benefits. The downside? Humans are not the only creatures that find chickens tasty and chickens themselves require some basic maintenance and care to keep happy and healthy. 
 
